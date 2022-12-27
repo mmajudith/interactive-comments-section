@@ -44,7 +44,7 @@ const CommentsSection = () => {
                                     No comments yet...
                                 </p>
                             )}
-                            <AddComment text={'Send'}/>
+                            <AddComment />
                         </>
                     )}
                 </>

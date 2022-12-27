@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ImageType, CommentsType } from '../../utils/types/types';
-import { commentTemp, replyTemp } from '../../utils/newCommentTemp/newCommentTemp';
+import { commentTemp, mappedComment } from '../../utils/newComment/newComment';
 import { data } from '../../data';
 
 //Fetch data action creator
@@ -19,7 +19,6 @@ export const getData = createAsyncThunk(
           comments: [...commentsData.comments ]
         };
         commentsData.comments.sort((a: CommentsType, b: CommentsType) => b.score - a.score);
-  
         localStorage.setItem("comments",JSON.stringify(commentsData));
 
         return commentsData;
@@ -30,27 +29,20 @@ export const getData = createAsyncThunk(
     }
 );
 
-
 //Action creator for incrementing scores
 export const incrementScore = createAsyncThunk(
   'comments/incrementScore',
   async (id: string, thunkAPI) => {
     try{
       let commentsData  = await JSON.parse(localStorage.getItem("comments")!);
-      console.log(id)
       commentsData.comments.map((comment: CommentsType) =>{
           if(comment.id === id){
             return comment.score = comment.score + 1
           }
 
           return comment.replies.map(reply => reply.score = reply.id === id ? reply.score + 1: reply.score);
-        });
+        })
 
-        commentsData  = {
-          ...commentsData,
-          comments: [...commentsData.comments ]
-        };
-      commentsData.comments.sort((a: CommentsType, b: CommentsType) => b.score - a.score);
       localStorage.setItem("comments",JSON.stringify(commentsData));
 
       return commentsData;
@@ -67,7 +59,6 @@ export const decrementScore = createAsyncThunk(
   async (id: string, thunkAPI) => {
     try{
       let commentsData  = await JSON.parse(localStorage.getItem("comments")!);
-      console.log(id)
       commentsData.comments.map((comment: CommentsType) =>{
         if(comment.id === id){
           return comment.score = comment.score - 1
@@ -76,13 +67,7 @@ export const decrementScore = createAsyncThunk(
         return comment.replies.map(reply => reply.score = reply.id === id ? reply.score - 1: reply.score);
       });
 
-      commentsData  = {
-        ...commentsData,
-        comments: [...commentsData.comments ]
-      };
-
-      commentsData.comments.sort((a: CommentsType, b: CommentsType) => b.score - a.score);
-      localStorage.setItem("comments",JSON.stringify(commentsData));
+      localStorage.setItem("comments", JSON.stringify(commentsData));
 
       return commentsData;
 
@@ -149,13 +134,13 @@ export const addComment = createAsyncThunk(
     try{
       let commentsData  = await JSON.parse(localStorage.getItem("comments")!);
       const {username, content, image } = comment;
-      const newComment = commentTemp(username, content, image)
+      const newComment = commentTemp(username, content, image, false)
      
       commentsData  = {
         ...commentsData,
         comments: [...commentsData.comments, newComment]
       };
-      console.log(commentsData)
+    
       localStorage.setItem("comments",JSON.stringify(commentsData));
 
       return commentsData;
@@ -173,27 +158,9 @@ export const replyComment = createAsyncThunk(
     try{
       let commentsData  = await JSON.parse(localStorage.getItem("comments")!);
       const { id, username, content, replyingTo, image } = reply;
-      const newReply = replyTemp(username, content, replyingTo,  image);
-
-      console.log(newReply)
+      const newReply = commentTemp(username, content, image, true, replyingTo);
       
-      commentsData.comments = commentsData.comments.map((comment: CommentsType) =>{
-        if(comment.id === id){
-          return {...comment, replies: [newReply, ...comment.replies] }
-        }
-
-        if(comment.id !== id){
-          return {
-            ...comment,
-            replies: comment?.replies?.map(reply => reply.id === id ? [reply, newReply] : [reply])?.reduce((allReply, reply) => [...allReply, ...reply], [])
-          }
-        }
-        
-          return comment
-        
-      });
-
-      console.log(commentsData)
+      commentsData.comments = commentsData.comments.map((comment: CommentsType) => mappedComment(comment, id, newReply));
 
       localStorage.setItem("comments",JSON.stringify(commentsData));
 

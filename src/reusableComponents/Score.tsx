@@ -10,7 +10,7 @@ type ScoresProps = {
 }
 
 const Scores = ({ score, id }: ScoresProps) => {
-    // console.log(id)
+    
     const dispatch = useAppDispatch();
     
     return(

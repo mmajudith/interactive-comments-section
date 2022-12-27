@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { toggleModals } from '../../utils/reducersToggleLogic/ReducersToggleLogic';
-import {  getData, incrementScore, 
+import {  
+          getData, incrementScore, 
           decrementScore, deleteComment,
-          updateComment, addComment, replyComment } from '../actionsCreator/commentsAction';
+          updateComment, addComment, replyComment 
+} from '../actionsCreator/commentsAction';
 import { CommentsState } from '../../utils/types/types';
 
 export const commentsSlice = createSlice({

@@ -11,7 +11,7 @@ type ProfileType = {
 export type CommentsType = {
     id: string
     content: string 
-    createdAt: string
+    createdAt: number
     score: number
     replyingTo?: string
     showReply?: Boolean
@@ -21,7 +21,7 @@ export type CommentsType = {
     replies: {
         id: string
         content: string 
-        createdAt: string
+        createdAt: number
         score: number
         replyingTo?: string
         showReply?: Boolean
