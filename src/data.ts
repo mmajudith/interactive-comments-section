@@ -3,8 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 export const data = {
     currentUser: {
       image: { 
-        png: "/static/images/image-juliusomo.png",
-        webp: "/static/images/image-juliusomo.webp"
+        png: "/image-juliusomo.png",
+        webp: "/image-juliusomo.webp"
       },
       username: "juliusomo"
     },
@@ -16,8 +16,8 @@ export const data = {
         score: 12,
         user: {
           image: { 
-            png: "/static/images/image-amyrobson.png",
-            webp: "/static/images/image-amyrobson.webp"
+            png: "/image-amyrobson.png",
+            webp: "/image-amyrobson.webp"
           },
           username: "amyrobson"
         },
@@ -30,8 +30,8 @@ export const data = {
         score: 5,
         user: {
           image: { 
-            png: "/static/images/image-maxblagun.png",
-            webp: "/static/images/image-maxblagun.webp"
+            png: "/image-maxblagun.png",
+            webp: "/image-maxblagun.webp"
           },
           username: "maxblagun"
         },
@@ -44,8 +44,8 @@ export const data = {
             replyingTo: "@maxblagun",
             user: {
               image: { 
-                png: "/static/images/image-ramsesmiron.png",
-                webp: "/static/images/image-ramsesmiron.webp"
+                png: "/image-ramsesmiron.png",
+                webp: "/image-ramsesmiron.webp"
               },
               username: "ramsesmiron"
             }
@@ -58,8 +58,8 @@ export const data = {
             replyingTo: "@ramsesmiron",
             user: {
               image: { 
-                png: "/static/images/image-juliusomo.png",
-                webp: "/static/images/image-juliusomo.webp"
+                png: "/image-juliusomo.png",
+                webp: "/image-juliusomo.webp"
               },
               username: "juliusomo"
             }
