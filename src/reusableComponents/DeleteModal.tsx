@@ -21,7 +21,7 @@ const DeleteComment = ({id}: DeleteCommentProps) => {
     return(
         <div className='w-screen h-screen bg-black-opacity fixed inset-0 z-20'>
             <div className='w-full h-full mx-auto flex flex-col justify-center items-center'>
-                <div className='w-[90%] ss:w-[380px] h-fit mx-auto bg-white rounded-lg'>
+                <div className='w-[90%] sm:w-[380px] h-fit mx-auto bg-white rounded-lg'>
                     <p className='w-[88%] mx-auto my-5 text-dark-blue font-semibold text-lg'>
                         Delete comment
                     </p>
