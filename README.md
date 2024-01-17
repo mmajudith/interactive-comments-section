@@ -18,7 +18,7 @@ Interactive comments section is an app that allow user to create, update, delete
 
 ## Author
 
-- Website - [My Portfolio](https://judith-portfolio.herokuapp.com/)
+- Website - [Judith Onyekwelu](https://judith-portfolio.vercel.app/)
 - Twitter - [@mmajudith1](https://www.twitter.com/mmajudith1)
 
 ### Run Locally
